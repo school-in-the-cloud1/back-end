@@ -4,9 +4,21 @@ module.exports = {
 
   development: {
     client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
-      filename: './dev.sqlite3'
-    }
+      filename: './data/sqlite3.db3'
+    },
+    migrations: {
+      directory: './data/migrations',
+      tableName: 'dbmigrations',
+    },
+    seeds: {
+      directory: './data/seeds'
+    },
+    pool: {
+      min: 2,
+      max: 3,
+    },
   },
 
   staging: {
