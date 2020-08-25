@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.get('/:id', restricted, (req, res) => {
+router.get('/id/:id', restricted, (req, res) => {
   const { id } = req.params;
   
   Users.getUserById(id)
@@ -21,14 +21,16 @@ router.get('/:id', restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.post('/filter', (req, res) => {
-  const filters = req.body;
+router.get('/filter',restricted, (req, res) => {
+  const filters = req.query;
+  console.log('test')
   Users.filterUsersBy(filters)
     .then(users => {
       res.status(200).json({data:users});
     })
     .catch(err => res.send(err));
 });
+
 
 router.delete('/:id', restricted,(req, res) => {
   const  {id}  = req.params;
