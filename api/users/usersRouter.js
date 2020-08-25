@@ -23,7 +23,6 @@ router.get('/:id', restricted, (req, res) => {
 
 router.post('/filter', (req, res) => {
   const filters = req.body;
-  console.log('test')
   Users.filterUsersBy(filters)
     .then(users => {
       res.status(200).json({data:users});
