@@ -4,6 +4,7 @@ const helmet = require('helmet');
 
 const authRouter = require("../auth/authRouter.js");
 const usersRouter = require("./users/usersRouter.js");
+const tasksRouter = require("./tasks/tasksRouter.js");
 
 const server = express();
 
@@ -13,6 +14,7 @@ server.use(express.json());
 
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
+server.use("/api/tasks", tasksRouter);
 
 //Test API
 server.get("/api", (req, res) => {
