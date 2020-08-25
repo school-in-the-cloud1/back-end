@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Users = require('./usersModel.js');
 const restricted = require('../../auth/restricted-mw.js');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
   Users.getAllUsers()
     .then(users => {
       res.status(200).json({data:users, jwt:req.decodedToken});
