@@ -3,7 +3,7 @@ exports.up = function(knex) {
   return knex.schema
     
     .createTable('users', tbl => {
-      tbl.uuid('id');
+      tbl.increments()
       tbl.string('email', 255)
         .unique()
         .notNullable()
@@ -24,7 +24,7 @@ exports.up = function(knex) {
     })
   
     .createTable('todo', tbl => {
-      tbl.uuid('id')
+      tbl.increments()
       tbl.string('title', 255)
         .notNullable()
       tbl.string('task')
@@ -49,7 +49,7 @@ exports.up = function(knex) {
       tbl.timestamps(true, true)
     })
     .createTable('sessions', tbl => {
-      tbl.uuid('id')
+      tbl.increments()
       tbl.date('date')
         .notNullable()
       tbl.time('time')
