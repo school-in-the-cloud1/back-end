@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const server = require('../api/server');
 
 describe('auth-router', () => {
-  const testEmail = 'testEmail';
+  const testEmail = 'testemail';
   const testUsername = 'testusername';
   const testPassword = 'testpassword';
   const wrongUsername = 'wrongusername';
