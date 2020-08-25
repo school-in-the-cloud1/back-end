@@ -23,11 +23,11 @@ exports.up = function(knex) {
       tbl.timestamps(true, true)
     })
   
-    .createTable('todo', tbl => {
+    .createTable('tasks', tbl => {
       tbl.increments()
       tbl.string('title', 255)
         .notNullable()
-      tbl.string('task')
+      tbl.string('description')
         .notNullable()
       tbl.boolean('complete')
         .notNullable()
@@ -79,6 +79,6 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('sessions')
-    .dropTableIfExists('todo')
+    .dropTableIfExists('tasks')
     .dropTableIfExists('users')
 };
