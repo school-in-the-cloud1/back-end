@@ -10,7 +10,7 @@ module.exports = {
 async function register(user) {
   try {
     const [id] = await db("users").insert(user, "id");
-    return findById(id);
+    return getUserById(id);
   } catch(error) {
     throw error;
   }
