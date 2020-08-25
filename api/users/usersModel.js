@@ -1,4 +1,4 @@
-const db = require("../data/connection.js");
+const db = require("../../data/connection.js");
 
 module.exports = {
   register,
