@@ -6,7 +6,7 @@ const restricted = require('../../auth/restricted-mw.js');
 router.get('/', restricted, (req, res) => {
   Users.getAllUsers()
     .then(users => {
-      res.status(200).json({data:users, jwt:req.decodedToken});
+      res.status(200).json({data:users});
     })
     .catch(err => res.send(err));
 });
