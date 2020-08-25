@@ -5,9 +5,11 @@ describe('auth-router', () => {
   const testEmail = 'testemail';
   const testUsername = 'testusername';
   const testPassword = 'testpassword';
+  const testRole = 'testrole';
   const wrongUsername = 'wrongusername';
   const wrongPassword = 'wrongpassword';
   const uniqueUsername = `unique${Math.random()}`;
+  const uniqueEmail = `unique${Math.random()}`;
 
   it('is able to run tests', () => {
     expect(true).toBeTruthy();
@@ -35,7 +37,7 @@ describe('auth-router', () => {
     it('responds with error if username is not unique', () => {
       return supertest(server)
         .post('/api/auth/register')
-        .send({email: testEmail, username: testUsername, password: testPassword})
+        .send({email: testEmail, username: testUsername, password: testPassword, role: testRole})
         .then(response => {
           expect(response.status).toBe(500);
         })
@@ -44,7 +46,7 @@ describe('auth-router', () => {
     it('responds with success if all required fields are included', () => {
       return supertest(server)
         .post('/api/auth/register')
-        .send({ username: uniqueUsername, password: testPassword })
+        .send({email: uniqueEmail, username: uniqueUsername, password: testPassword, role: testRole})
         .then(response => {
           expect(response.status).toBe(201);
         })
@@ -91,7 +93,7 @@ describe('auth-router', () => {
     it('responds with success if credentials are correct', () => {
       return supertest(server)
         .post('/api/auth/login')
-        .send({email: testEmail, username: testUsername, password: testPassword})
+        .send({email: testEmail, username: testUsername, password: testPassword })
         .then(response => {
           expect(response.status).toBe(200);
         })
