@@ -51,7 +51,7 @@ router.post("/login", (req, res) => {
       });
   } else {
     res.status(400).json({
-      message: "please provide username and password and the password shoud be alphanumeric",
+      message: "please provide username and password and the password should be alphanumeric",
     });
   }
 });
@@ -60,7 +60,6 @@ function signToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    department: user.department
   }
 
   const secret = constants.jwtSecret;
