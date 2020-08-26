@@ -11,13 +11,10 @@ router.post("/register", (req, res) => {
 
   if (isValid(credentials)) {
     const rounds = process.env.BCRYPT_ROUNDS || 8;
-
-    // hash the password
     const hash = bcryptjs.hashSync(credentials.password, rounds);
 
     credentials.password = hash;
 
-    // save the user to the database
     Users.register(credentials)
       .then(user => {
         res.status(201).json({ data: user });
@@ -38,7 +35,6 @@ router.post("/login", (req, res) => {
   if (isValid(req.body)) {
     Users.filterUsersBy({ username: username })
       .then(([user]) => {
-        // compare the password the hash stored in the database
         if (user && bcryptjs.compareSync(password, user.password)) {
           const token = signToken(user);
           res.status(200).json( {id: user.id, role: user.role, token: token});
