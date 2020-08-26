@@ -1,6 +1,5 @@
 # School In The Cloud API
 
-Documentation can be found here https://documenter.getpostman.com/view/11582289/TVCZYqSH
 ## API URL
 
 https://bwschoolinthecloud.herokuapp.com/
