@@ -21,6 +21,26 @@ router.get('/id/:id', restricted, (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.put('/:id', restricted, (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  Users.getUserById(id)
+  .then(user => {
+    if (user) {
+      Users.updateUser(changes, id)
+      .then(updatedUser => {
+        res.json(updatedUser);
+      });
+    } else {
+      res.status(404).json({ message: 'Could not find user with given id' });
+    }
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to update user' });
+  });
+});
+
 router.get('/filter',restricted, (req, res) => {
   const filters = req.query;
   console.log('test')

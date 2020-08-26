@@ -4,6 +4,7 @@ module.exports = {
   register,
   getAllUsers,
   getUserById,
+  updateUser,
   filterUsersBy,
   deleteUser
 };
@@ -25,6 +26,15 @@ function getUserById(id) {
   return db("users")
     .where("id", id)
     .first();
+}
+
+function updateUser(changes, id) {
+  return db("users")
+    .where({ id })
+    .update(changes,id)
+    .then(() => {
+      return getUserById(id);
+    });
 }
 
 function filterUsersBy(filter) {
